@@ -1,0 +1,5 @@
+{
+  "authReject": "账号或密码有误",
+  "userNotHas": "用户未找到",
+  "uniqueMust": "用户名或邮箱已存在"
+}

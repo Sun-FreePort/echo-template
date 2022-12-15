@@ -1,0 +1,5 @@
+{
+  "authReject": "Username or password is failed.",
+  "userNotHas": "Account not found.",
+  "uniqueMust": "Username or email exists."
+}

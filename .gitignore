@@ -1,0 +1,7 @@
+# cache directory
+.vs/
+.idea/
+logfile
+
+# config
+env-*
