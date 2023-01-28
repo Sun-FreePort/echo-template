@@ -1,3 +1,25 @@
+# Echo Framework Template
+
+使用原则：具体项目**必须**无需修改非 `handler / model` 文件夹，从而提供快速升级的解决方案。
+
+## 目录结构
+
+Ps: 加粗标识可修改
+
+- \
+  - **handler**\：业务逻辑代码与路由
+    - aRoute.go：API 路由
+    - handler.go：业务入口
+  - **model**\：模型结构
+  - **structure**\：纯数据结构（无关模型等）
+  - dict\：i18n 字典，`custom` 文件夹内属于框架文件，不应修改或删除
+  - db\：数据库文件，不应修改或删除
+  - docs\：自动生成的文档
+  - help\：辅助方法，`I` 打头的文件为框架文件，不应修改或删除
+  - env.json：配置文件模板
+  - **env-dev.json**：配置文件（开发环境）
+  - **env-prod.json**：配置文件（生产环境）
+
 ## Todo
 
 - [x] 注册

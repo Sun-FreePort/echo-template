@@ -52,7 +52,7 @@ func (h *Handler) LoginUser(c echo.Context) error {
 	}
 
 	// 校验用户密码
-	if help.HashCheckPassword(req.Password, user.Password) == false {
+	if help.IHashCheckPassword(req.Password, user.Password) == false {
 		return c.JSON(http.StatusUnauthorized, "authReject")
 	}
 	res.Id = user.Id
@@ -99,7 +99,7 @@ func (h *Handler) SignupUser(c echo.Context) error {
 	}
 
 	// 生成用户
-	user = model.User{Name: req.Name, Password: help.HashPassword(req.Password), Email: req.Email, PhoneArea: req.PhoneArea, PhoneNumber: req.PhoneNumber}
+	user = model.User{Name: req.Name, Password: help.IHashPassword(req.Password), Email: req.Email, PhoneArea: req.PhoneArea, PhoneNumber: req.PhoneNumber}
 	err = h.db.Create(&user).Error
 	if err != nil {
 		c.Logger().Error(err)
@@ -112,7 +112,7 @@ func (h *Handler) SignupUser(c echo.Context) error {
 }
 
 func (h *Handler) replaceToken(id uint, device string) string {
-	key := help.RandomString(28)
+	key := help.IRandomString(28)
 
 	// 存储 Token
 	token := model.PersonalAccessToken{TokenableType: "App\\Models\\User", TokenableId: id, Name: device, Token: key, Abilities: "[\"*\"]"}
