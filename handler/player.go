@@ -2,8 +2,8 @@ package handler
 
 import (
 	"encoding/json"
-	"github.com/Sun-FreePort/echo-game/cache"
-	"github.com/Sun-FreePort/echo-game/model"
+	"github.com/Sun-FreePort/echo-template/cache"
+	"github.com/Sun-FreePort/echo-template/model"
 	"github.com/labstack/echo/v4"
 	"net/http"
 	"strconv"

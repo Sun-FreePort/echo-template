@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/Sun-FreePort/echo-game/cache"
+	"github.com/Sun-FreePort/echo-template/cache"
 	"github.com/go-redis/redis/v9"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -27,7 +27,7 @@ func NewHandler(redis *redis.Client, db *gorm.DB) *Handler {
 // Register 注册路由
 func (h *Handler) Register(router *echo.Group) {
 	h.userId = 0
-	rdb := cache.GetRedis(new(cache.Parameters))
+	rdb := cache.GetRedis(new(cache.Params))
 	h.redis = rdb
 
 	h.AuthNot(router)

@@ -8,15 +8,17 @@ import (
 
 var ctx = context.Background()
 
-type Parameters struct {
-	db int `default:"0"`
+type Params struct {
+	Host string
+	Port string
+	Db   int
 }
 
-func GetRedis(params *Parameters) *redis.Client {
+func GetRedis(params Params) *redis.Client {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     params.Host + params.Port,
 		Password: "",        // no password set
-		DB:       params.db, // use default DB
+		DB:       params.Db, // use default DB
 	})
 
 	return rdb

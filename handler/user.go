@@ -2,9 +2,9 @@ package handler
 
 import (
 	"errors"
-	"github.com/Sun-FreePort/echo-game/cache"
-	"github.com/Sun-FreePort/echo-game/help"
-	"github.com/Sun-FreePort/echo-game/model"
+	"github.com/Sun-FreePort/echo-template/cache"
+	"github.com/Sun-FreePort/echo-template/help"
+	"github.com/Sun-FreePort/echo-template/model"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 	"net/http"

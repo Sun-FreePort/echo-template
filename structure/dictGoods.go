@@ -3,8 +3,8 @@ package structure
 import (
 	"encoding/json"
 	"errors"
-	"github.com/Sun-FreePort/echo-game/cache"
-	"github.com/Sun-FreePort/echo-game/model"
+	"github.com/Sun-FreePort/echo-template/cache"
+	"github.com/Sun-FreePort/echo-template/model"
 	"github.com/go-redis/redis/v9"
 	"gorm.io/gorm"
 	"strconv"

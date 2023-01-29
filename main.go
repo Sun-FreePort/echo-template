@@ -3,14 +3,15 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Sun-FreePort/echo-game/cache"
-	"github.com/Sun-FreePort/echo-game/db"
-	"github.com/Sun-FreePort/echo-game/handler"
+	"github.com/Sun-FreePort/echo-template/cache"
+	"github.com/Sun-FreePort/echo-template/db"
+	"github.com/Sun-FreePort/echo-template/handler"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -53,7 +54,16 @@ func main() {
 	}
 
 	// 实例化
-	h := handler.NewHandler(cache.GetRedis(new(cache.Parameters)), db.New(db.Params{
+	dbHost, err := strconv.Atoi(payload["CACHE_HOST"])
+	if err != nil {
+		panic(err)
+	}
+
+	h := handler.NewHandler(cache.GetRedis(cache.Params{
+		Db:   dbHost,
+		Port: payload["CACHE_PORT"],
+		Host: payload["CACHE_HOST"],
+	}), db.New(db.Params{
 		Username:  payload["DB_USERNAME"],
 		Password:  payload["DB_PASSWORD"],
 		Database:  payload["DB_DATABASE"],

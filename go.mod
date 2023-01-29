@@ -1,4 +1,4 @@
-module github.com/Sun-FreePort/echo-game
+module github.com/Sun-FreePort/echo-template
 
 go 1.19
 
