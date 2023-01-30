@@ -54,7 +54,7 @@ func main() {
 	}
 
 	// 实例化
-	dbHost, err := strconv.Atoi(payload["CACHE_HOST"])
+	dbHost, err := strconv.Atoi(payload["CACHE_DATABASE"])
 	if err != nil {
 		panic(err)
 	}
@@ -70,7 +70,7 @@ func main() {
 		ParseTime: payload["DB_PARSE_TIME"],
 	}))
 
-	e := routeNew()
+	e := routeNew(payload)
 	router := e.Group("")
 	h.Register(router)
 
@@ -82,7 +82,7 @@ func main() {
 	e.Logger.Fatal(e.Start(port))
 }
 
-func routeNew() *echo.Echo {
+func routeNew(payload map[string]string) *echo.Echo {
 	e := echo.New()
 
 	e.GET("/doc/*", echoSwagger.WrapHandler)
@@ -96,10 +96,7 @@ func routeNew() *echo.Echo {
 		}
 		// Middleware
 		e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-			Format: `{"time":"${time_rfc3339_nano}","id":"${id}","remote_ip":"${remote_ip}",` +
-				`"host":"${host}","method":"${method}","uri":"${uri}","user_agent":"${user_agent}",` +
-				`"status":${status},"error":"${error}","latency":${latency},"latency_human":"${latency_human}"` +
-				`,"bytes_in":${bytes_in},"bytes_out":${bytes_out}}` + "\n",
+			Format: payload["LOG_FORMAT"],
 			Output: f,
 		}))
 	} else {

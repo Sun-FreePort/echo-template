@@ -27,9 +27,6 @@ func NewHandler(redis *redis.Client, db *gorm.DB) *Handler {
 // Register 注册路由
 func (h *Handler) Register(router *echo.Group) {
 	h.userId = 0
-	rdb := cache.GetRedis(new(cache.Params))
-	h.redis = rdb
-
 	h.AuthNot(router)
 
 	auth := router.Group("")
