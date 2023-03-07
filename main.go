@@ -64,6 +64,8 @@ func main() {
 		Port: payload["CACHE_PORT"],
 		Host: payload["CACHE_HOST"],
 	}), db.New(db.Params{
+		Host:      payload["DB_HOST"],
+		Port:      payload["DB_PORT"],
 		Username:  payload["DB_USERNAME"],
 		Password:  payload["DB_PASSWORD"],
 		Database:  payload["DB_DATABASE"],

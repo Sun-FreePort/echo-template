@@ -7,6 +7,8 @@ import (
 )
 
 type Params struct {
+	Host      string
+	Port      string
 	Username  string
 	Password  string
 	Database  string
@@ -15,9 +17,11 @@ type Params struct {
 
 func New(params Params) *gorm.DB {
 	db, err := gorm.Open(mysql.Open(fmt.Sprintf(
-		"%s:%s@/%s?parseTime=%s",
+		"%s:%s@tcp(%s:%s)/%s?parseTime=%s",
 		params.Username,
 		params.Password,
+		params.Host,
+		params.Port,
 		params.Database,
 		params.ParseTime)), &gorm.Config{})
 	if err != nil {
